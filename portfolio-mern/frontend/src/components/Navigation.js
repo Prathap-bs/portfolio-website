@@ -24,7 +24,7 @@ const Navigation = () => {
           <img src={profileInfo.image} alt="Prathap" className="profile-pic" />
         </button>
 
-        <a href="#" className="nav-logo">Prathap</a>
+        <a href="#home" className="nav-logo">Prathap</a>
         <ul className="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>

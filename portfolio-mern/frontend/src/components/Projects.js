@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Projects.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
