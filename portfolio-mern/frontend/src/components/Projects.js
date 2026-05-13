@@ -35,7 +35,7 @@ const Projects = ({ projects }) => {
           {projects.map((project) => (
             <a
               key={project.id}
-              href={project.link || '#'}
+              href={project.link || '#projects'}
               target={project.link ? '_blank' : ''}
               rel={project.link ? 'noopener noreferrer' : ''}
               className={`project-card stagger-item animate-on-scroll--rotate ${project.id === 3 ? 'wide' : ''}`}
