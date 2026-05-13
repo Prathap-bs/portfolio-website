@@ -20,7 +20,7 @@ function App() {
   useScrollTrigger();
 
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = 'https://portfolio-website-whqu.onrender.com/api';
 
     // Fetch portfolio data
     fetch(`${API_URL}/portfolio`)
