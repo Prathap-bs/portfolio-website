@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { useScrollAnimation, useParallax, useScrollTrigger } from './hooks/useScrollAnimation';
+import { useParallax, useScrollTrigger } from './hooks/useScrollAnimation';
+
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -13,24 +14,31 @@ import Footer from './components/Footer';
 function App() {
   const [portfolio, setPortfolio] = useState(null);
   const [projects, setProjects] = useState([]);
-  
+
+  // Animation hooks
   useParallax();
   useScrollTrigger();
 
   useEffect(() => {
-    // Fetch portfolio data from backend
-    fetch('http://localhost:5000/api/portfolio')
-      .then(res => res.json())
-      .then(data => setPortfolio(data))
-      .catch(err => console.log('Error:', err));
+    const API_URL = process.env.REACT_APP_API_URL;
 
-    fetch('http://localhost:5000/api/projects')
-      .then(res => res.json())
-      .then(data => setProjects(data))
-      .catch(err => console.log('Error:', err));
+    // Fetch portfolio data
+    fetch(`${API_URL}/portfolio`)
+      .then((res) => res.json())
+      .then((data) => setPortfolio(data))
+      .catch((err) => console.log('Portfolio Error:', err));
+
+    // Fetch projects data
+    fetch(`${API_URL}/projects`)
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch((err) => console.log('Projects Error:', err));
   }, []);
 
-  if (!portfolio) return <div className="loading">Loading...</div>;
+  // Loading screen
+  if (!portfolio) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <div className="App">
