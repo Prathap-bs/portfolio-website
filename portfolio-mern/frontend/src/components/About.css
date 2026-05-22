@@ -1,11 +1,21 @@
 .about {
-  padding: 128px 20px;
+  padding: 80px 24px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent 18%), var(--bg);
   position: relative;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1 !important;
+}
+
+.about .container {
+  width: 100%;
+  max-width: 1120px;
 }
 
 .about::before {
@@ -33,20 +43,25 @@
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 24px;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 40px;
   align-items: start;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .about-left {
-  max-width: 500px;
+  display: none !important;
+  max-width: 100%;
   padding: 30px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(22px) saturate(160%);
   box-shadow: var(--shadow);
+  width: 100%;
 }
 
 .about-avatar {
@@ -115,12 +130,19 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  min-width: 0;
+  grid-column: 1 / -1;
 }
+
+
 
 .about-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  width: 100%;
+  grid-auto-rows: minmax(auto, max-content);
 }
 
 .stat-card {
@@ -136,6 +158,37 @@
 .stat-card:hover {
   border-color: rgba(0, 113, 227, 0.3);
   background: rgba(0, 113, 227, 0.05);
+}
+
+.about-me-card {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.about-me-card:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+  background: rgba(0, 113, 227, 0.05);
+}
+
+.about-me-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.about-me-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
 .stat-number {
@@ -242,6 +295,10 @@
   animation-delay: 0s; 
 }
 
+.about-me-card.stagger-item {
+  animation-delay: 0.1s;
+}
+
 @keyframes fadeInUpStagger {
   from {
     opacity: 0;
@@ -253,7 +310,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 40px;

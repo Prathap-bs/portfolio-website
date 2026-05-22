@@ -77,6 +77,16 @@ const About = ({ portfolio }) => {
                 <div className="stat-number">93%</div>
                 <div className="stat-label">Gesture accuracy</div>
               </div>
+              <div className="stat-card stagger-item">
+                <div className="stat-number">2+</div>
+                <div className="stat-label">Years of experience</div>
+              </div>
+            </div>
+            <div className="about-me-card stagger-item">
+              <div className="about-me-title">About me</div>
+              <p className="about-me-text">
+                Third-year B.Tech CSBS student at GITAM University, Bengaluru. Passionate about building production-grade backend systems with MERN stack. Strong foundation in SQL and Python. Specialized in Node.js, Express, and MongoDB architecture.
+              </p>
             </div>
             <div className="about-tech stagger-item">
               <div className="tech-title">Node.js · MongoDB · Express</div>

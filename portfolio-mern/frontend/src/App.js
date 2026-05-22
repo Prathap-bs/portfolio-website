@@ -37,7 +37,14 @@ function App() {
 
   // Loading screen
   if (!portfolio) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="loading">
+        <div className="loader">
+          <div className="spinner"></div>
+          <p>Loading portfolio...</p>
+        </div>
+      </div>
+    );
   }
 
   return (

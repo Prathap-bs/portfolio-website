@@ -35,18 +35,40 @@ export const useScrollAnimation = (options = {}) => {
 
 export const useParallax = () => {
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+    let lastScrollY = 0;
+
+    const updateParallax = () => {
       const parallaxElements = document.querySelectorAll('[data-parallax]');
 
       parallaxElements.forEach((el) => {
-        const speed = el.getAttribute('data-parallax');
-        const yPos = window.scrollY * speed;
+        const speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Only apply parallax when element is in viewport
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          const elementCenter = rect.top + rect.height / 2;
+          const centerOffset = elementCenter - windowHeight / 2;
+          const yPos = centerOffset * speed;
 
-        el.style.transform = `translateY(${yPos}px)`;
+          el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        }
       });
+
+      ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
