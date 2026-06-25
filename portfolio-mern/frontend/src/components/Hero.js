@@ -44,20 +44,30 @@ const Hero = ({ portfolio }) => {
         </div>
 
         <div className="hero-visual animate-on-scroll--right" ref={visualRef} data-parallax="0.15" aria-hidden="true">
-          <div className="hero-visual-card hero-visual-card-main glass-card" data-parallax="0.08">
-            <span className="hero-card-label">Current focus</span>
-            <h2>Scalable MERN backends, clean REST APIs, and production-ready data architecture.</h2>
-            <p>Building systems that handle scale, maintain data integrity, and deliver reliability under load.</p>
-          </div>
-
-          <div className="hero-visual-stack">
-            <div className="hero-visual-card glass-card" data-parallax="0.12">
-              <span className="hero-card-label">Location</span>
-              <strong>{portfolio.location}</strong>
+          <div className="code-editor-window">
+            <div className="editor-header">
+              <div className="window-dots">
+                <span className="window-dot red"></span>
+                <span className="window-dot yellow"></span>
+                <span className="window-dot green"></span>
+              </div>
+              <span className="editor-file">developer.js</span>
             </div>
-            <div className="hero-visual-card glass-card" data-parallax="0.18">
-              <span className="hero-card-label">Contact</span>
-              <strong>{portfolio.email}</strong>
+            <div className="editor-body">
+              <pre className="code-block">
+                <code>
+<span className="keyword">const</span> developer <span className="operator">=</span> <span className="bracket">&#123;</span><br/>
+&nbsp;&nbsp;name<span className="operator">:</span> <span className="string">'{portfolio.name}'</span>,<br/>
+&nbsp;&nbsp;role<span className="operator">:</span> <span className="string">'Full Stack Developer'</span>,<br/>
+&nbsp;&nbsp;location<span className="operator">:</span> <span className="string">'{portfolio.location}'</span>,<br/>
+&nbsp;&nbsp;skills<span className="operator">:</span> <span className="bracket">[</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span className="string">'React'</span>, <span className="string">'Node.js'</span>, <span className="string">'Express'</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span className="string">'MongoDB'</span>, <span className="string">'Python'</span>, <span className="string">'REST APIs'</span><br/>
+&nbsp;&nbsp;<span className="bracket">]</span>,<br/>
+&nbsp;&nbsp;focus<span className="operator">:</span> <span className="string">'Scalable Backend Architecture'</span><br/>
+<span className="bracket">&#125;</span>;
+                </code>
+              </pre>
             </div>
           </div>
         </div>

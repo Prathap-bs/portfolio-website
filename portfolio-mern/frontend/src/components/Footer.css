@@ -1,26 +1,30 @@
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: var(--border);
   padding: 36px 20px 42px;
   text-align: center;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.08), transparent 35%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
+  background: var(--bg-secondary);
 }
 
 .footer p {
+  font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--text-tertiary);
+  color: var(--ink);
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .footer span {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--saffron);
+  font-weight: 700;
 }
 
 .footer-secondary {
+  font-family: var(--font-mono);
   font-size: 11px;
+  color: var(--ink-3);
   margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 600px) {

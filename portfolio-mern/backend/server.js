@@ -1,7 +1,31 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
+
+// Configure email transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
+  }
+});
+
+// Verify email transporter at startup
+if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error('✗ SMTP connection error:', error.message);
+      console.error('👉 Troubleshooting: Make sure you use a Google App Password (not your regular Gmail password) and 2-Step Verification is enabled.');
+    } else {
+      console.log('✓ SMTP connection ready (emails will be sent successfully)');
+    }
+  });
+} else {
+  console.log('⚠ SMTP transporter not configured: EMAIL_USER or EMAIL_PASSWORD missing in env');
+}
 
 const app = express();
 
@@ -29,7 +53,7 @@ app.get('/api/portfolio', (req, res) => {
   res.json({
     name: 'Prathap B S',
     role: 'Full Stack Developer',
-    bio: 'BTech CSBS student at GITAM University — building fast, beautiful, production-grade web apps with the MERN stack & Python.',
+    bio: 'BTech CSBS student at GITAM University — building fast, beautiful, production-grade web apps with the MERN stack.',
     email: 'pbs@gitam.in',
     phone: '+91 98801 99938',
     location: 'Bengaluru, IN',
@@ -44,8 +68,33 @@ app.post('/api/contact', async (req, res) => {
   try {
     const contact = new Contact(req.body);
     await contact.save();
+
+    // Send email notification if credentials are configured
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      try {
+        const mailOptions = {
+          from: process.env.EMAIL_USER,
+          to: 'pbs@gitam.in',
+          subject: `New Portfolio Message from ${contact.name}`,
+          text: `You received a new message from your portfolio website:
+
+Name: ${contact.name}
+Email: ${contact.email}
+Message: ${contact.message}
+`
+        };
+        await transporter.sendMail(mailOptions);
+        console.log('✓ Email notification sent to pbs@gitam.in');
+      } catch (emailErr) {
+        console.error('✗ Email notification failed to send:', emailErr.message);
+      }
+    } else {
+      console.log('⚠ Email notification skipped (EMAIL_USER or EMAIL_PASSWORD not set in env)');
+    }
+
     res.status(201).json({ message: 'Message sent successfully' });
   } catch (err) {
+    console.error('✗ Contact form server error:', err);
     res.status(500).json({ error: err.message });
   }
 });

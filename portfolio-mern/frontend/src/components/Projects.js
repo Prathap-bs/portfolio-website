@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Projects.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -16,16 +16,6 @@ const getProjectIcon = (emoji) => {
 const Projects = ({ projects }) => {
   const sectionRef = useScrollAnimation({ threshold: 0.15 });
 
-  useEffect(() => {
-    const element = document.querySelector('.projects');
-    if (element) {
-      element.classList.add('animate-in-view');
-      const projectCards = element.querySelectorAll('.project-card');
-      projectCards.forEach(card => {
-        card.classList.add('animate-in-view');
-      });
-    }
-  }, [projects]);
   return (
     <section className="projects animate-on-scroll" ref={sectionRef} id="projects">
       <div className="container">

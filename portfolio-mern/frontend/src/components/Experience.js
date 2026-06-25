@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Experience.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Experience = () => {
   const sectionRef = useScrollAnimation({ threshold: 0.2 });
 
-  useEffect(() => {
-    const element = document.querySelector('.experience');
-    if (element) {
-      element.classList.add('animate-in-view');
-      const animatedChildren = element.querySelectorAll('[class*="animate-on-scroll"]');
-      animatedChildren.forEach(child => {
-        child.classList.add('animate-in-view');
-      });
-    }
-  }, []);
   const experiences = [
     {
       date: '2026 — Present',
@@ -43,7 +33,7 @@ const Experience = () => {
         <p className="section-desc">Where I've studied, trained, and shipped real work.</p>
         <div className="experience-list">
           {experiences.map((exp, idx) => (
-            <div key={idx} className="experience-card">
+            <div key={idx} className="experience-card stagger-item">
               <div className="exp-date">{exp.date}</div>
               <div className="exp-content">
                 <h3 className="exp-title">{exp.title}</h3>

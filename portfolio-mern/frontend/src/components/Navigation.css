@@ -6,11 +6,11 @@
   z-index: 900;
   width: min(1120px, calc(100% - 24px));
   height: 64px;
-  background: rgba(8, 8, 10, 0.78);
-  backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  background: var(--paper);
+  border: var(--border);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  transition: all 0.15s ease;
 }
 
 .nav-container {
@@ -25,12 +25,18 @@
 }
 
 .nav-logo {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink);
   text-decoration: none;
-  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   white-space: nowrap;
+}
+
+.nav-logo span {
+  color: var(--saffron);
 }
 
 .nav-links {
@@ -58,38 +64,41 @@
   justify-content: center;
   min-height: 36px;
   padding: 0 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  color: var(--text-secondary);
+  font-family: var(--font-condensed);
+  font-size: 14px;
+  color: var(--ink);
   text-decoration: none;
-  transition: all 0.22s ease;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  transition: all 0.15s ease;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--saffron-deep);
 }
 
 .nav-hire {
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
-  color: white !important;
+  background: var(--saffron) !important;
+  color: var(--paper) !important;
   padding: 0 16px !important;
   margin-left: 6px;
-  box-shadow: 0 12px 24px rgba(0, 113, 227, 0.22);
+  border: var(--border) !important;
+  box-shadow: 3px 3px 0px var(--ink);
+  border-radius: 2px !important;
 }
 
 .nav-hire:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 32px rgba(0, 113, 227, 0.3);
+  background: var(--saffron-deep) !important;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--ink);
 }
 
 @media (max-width: 768px) {
   .nav {
     top: 8px;
     width: calc(100% - 16px);
-    border-radius: 24px;
+    border-radius: 4px;
     height: 60px;
   }
 
@@ -103,7 +112,7 @@
   }
 
   .nav-links a {
-    padding: 0 12px;
+    padding: 0 10px;
     font-size: 12px;
   }
 
@@ -123,25 +132,22 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  border: var(--border);
+  background: var(--paper-2);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.17, 0.55, 0.55, 1);
-  backdrop-filter: blur(12px);
+  transition: all 0.15s ease;
   flex-shrink: 0;
   margin-right: 12px;
   order: -1;
 }
 
 .profile-btn:hover {
-  border-color: rgba(0, 113, 227, 0.3);
-  background: rgba(0, 113, 227, 0.1);
-  box-shadow: 0 0 16px rgba(0, 113, 227, 0.2);
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 3px 3px 0px var(--ink);
 }
 
 .profile-pic {
@@ -157,8 +163,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: transparent;
-  backdrop-filter: none;
+  background: rgba(26, 17, 8, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,25 +178,27 @@
   display: flex;
   gap: 32px;
   align-items: center;
-  background: rgba(15, 15, 18, 0.75);
-  backdrop-filter: blur(8px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: var(--shadow-lg);
   padding: 32px;
   max-width: 700px;
   width: 100%;
-  animation: scaleIn 0.4s cubic-bezier(0.17, 0.55, 0.55, 1);
+  animation: scaleIn 0.3s cubic-bezier(0.17, 0.55, 0.55, 1);
   margin: auto;
   max-height: 85vh;
   overflow-y: auto;
+  color: var(--ink);
 }
 
 .profile-modal-img {
   width: 260px;
   height: 260px;
   object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6);
+  border: var(--border);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
   flex-shrink: 0;
 }
 
@@ -199,15 +206,16 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
 
 .profile-info h2 {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
   margin: 0;
-  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .info-section {
@@ -218,7 +226,7 @@
 .info-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .info-item.full-width {
@@ -226,18 +234,21 @@
 }
 
 .info-label {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--ink-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .info-value {
+  font-family: var(--font-condensed);
   font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .download-btn {
@@ -246,22 +257,26 @@
   justify-content: center;
   gap: 8px;
   padding: 14px 24px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-  color: white;
+  background: var(--green);
+  color: var(--paper);
+  font-family: var(--font-condensed);
   font-size: 14px;
-  font-weight: 600;
-  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: var(--border);
+  border-radius: 4px;
   text-decoration: none;
-  border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.17, 0.55, 0.55, 1);
-  box-shadow: 0 12px 24px rgba(0, 113, 227, 0.25);
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow);
   width: fit-content;
 }
 
 .download-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(0, 113, 227, 0.35);
+  background: var(--green-2);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
 .download-btn span {
@@ -269,23 +284,13 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes scaleIn {
-  from {
-    transform: scale(0.92);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 @media (max-width: 900px) {
@@ -301,7 +306,7 @@
   }
 
   .profile-info h2 {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 
@@ -323,7 +328,7 @@
   }
 
   .profile-info h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .info-value {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './Contact.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -6,16 +6,6 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const Contact = ({ portfolio }) => {
   const sectionRef = useScrollAnimation({ threshold: 0.15 });
 
-  useEffect(() => {
-    const element = document.querySelector('.contact');
-    if (element) {
-      element.classList.add('animate-in-view');
-      const animatedChildren = element.querySelectorAll('[class*="animate-on-scroll"]');
-      animatedChildren.forEach(child => {
-        child.classList.add('animate-in-view');
-      });
-    }
-  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,7 +25,10 @@ const Contact = ({ portfolio }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/contact', formData);
+      const API_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:5000/api'
+        : 'https://portfolio-website-whqu.onrender.com/api';
+      await axios.post(`${API_URL}/contact`, formData);
       setStatus(`Message sent successfully! I'll get back to you soon.`);
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setStatus(''), 3000);

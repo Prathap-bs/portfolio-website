@@ -43,7 +43,7 @@ const About = ({ portfolio }) => {
             <div className="about-avatar">P</div>
             <h3>Hey, I'm Prathap</h3>
             <p>Third-year B.Tech CSBS student at GITAM University, Bengaluru. Backend developer focused on building production-grade systems with MERN stack — solid fundamentals in data modeling, authentication, and API design.</p>
-            <p>Strong foundation in SQL and Python from training at QSpiders. Specialized in MERN full-stack architecture with focus on Node.js + Express + MongoDB backend systems — shipping real APIs that scale and prioritize code quality, security, and maintainability.</p>
+            <p>Strong foundation in SQL and databases from training at QSpiders. Specialized in MERN full-stack architecture with focus on Node.js + Express + MongoDB backend systems — shipping real APIs that scale and prioritize code quality, security, and maintainability.</p>
             <div className="about-chips">
               <span className="chip">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -85,7 +85,7 @@ const About = ({ portfolio }) => {
             <div className="about-me-card stagger-item">
               <div className="about-me-title">About me</div>
               <p className="about-me-text">
-                Third-year B.Tech CSBS student at GITAM University, Bengaluru. Passionate about building production-grade backend systems with MERN stack. Strong foundation in SQL and Python. Specialized in Node.js, Express, and MongoDB architecture.
+                Third-year B.Tech CSBS student at GITAM University, Bengaluru. Passionate about building production-grade backend systems with MERN stack. Strong foundation in SQL and database design. Specialized in Node.js, Express, and MongoDB architecture.
               </p>
             </div>
             <div className="about-tech stagger-item">
@@ -103,7 +103,7 @@ const About = ({ portfolio }) => {
                   <span className="skill-percent">80%</span>
                 </div>
                 <div className="skill-bar">
-                  <div className="skill-name">Python / C++</div>
+                  <div className="skill-name">Java / C++</div>
                   <div className="skill-progress"><div className="skill-fill" style={{width: '78%'}}></div></div>
                   <span className="skill-percent">78%</span>
                 </div>

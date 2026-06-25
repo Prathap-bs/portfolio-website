@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Skills.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Skills = () => {
   const sectionRef = useScrollAnimation({ threshold: 0.15 });
 
-  useEffect(() => {
-    const element = document.querySelector('.skills');
-    if (element) {
-      element.classList.add('animate-in-view');
-      const animatedChildren = element.querySelectorAll('[class*="animate-on-scroll"]');
-      animatedChildren.forEach(child => {
-        child.classList.add('animate-in-view');
-      });
-    }
-  }, []);
   const getSkillIcon = (type) => {
     const icons = {
       languages: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>,
@@ -31,7 +21,7 @@ const Skills = () => {
     {
       iconType: 'languages',
       title: 'Languages',
-      tags: ['Python', 'JavaScript', 'Java', 'C', 'C++'],
+      tags: ['JavaScript', 'TypeScript', 'Java', 'C', 'C++'],
       color: '#f97316'
     },
     {
