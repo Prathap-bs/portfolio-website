@@ -64,23 +64,20 @@ app.post('/api/contact', async (req, res) => {
     await contact.save();
 
     if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
-      try {
-        const mailOptions = {
-          from: process.env.EMAIL_USER,
-          to: 'pbs@gitam.in',
-          subject: `New Portfolio Message from ${contact.name}`,
-          text: `You received a new message from your portfolio website:
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: 'pbs@gitam.in',
+        subject: `New Portfolio Message from ${contact.name}`,
+        text: `You received a new message from your portfolio website:
 
 Name: ${contact.name}
 Email: ${contact.email}
 Message: ${contact.message}
 `
-        };
-        await transporter.sendMail(mailOptions);
-        console.log('Email notification sent to pbs@gitam.in');
-      } catch (emailErr) {
-        console.error('Email notification failed to send:', emailErr.message);
-      }
+      };
+      transporter.sendMail(mailOptions)
+        .then(() => console.log('Email notification sent to pbs@gitam.in'))
+        .catch(emailErr => console.error('Email notification failed to send:', emailErr.message));
     } else {
       console.log('Email notification skipped (EMAIL_USER or EMAIL_PASSWORD not set in env)');
     }
