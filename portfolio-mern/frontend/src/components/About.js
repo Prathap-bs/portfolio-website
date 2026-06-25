@@ -1,38 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './About.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const About = ({ portfolio }) => {
   const sectionRef = useScrollAnimation({ threshold: 0.2 });
-
-  useEffect(() => {
-    // Create Intersection Observer for individual stagger items
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    // Observe all stagger items
-    const staggerItems = document.querySelectorAll('.stagger-item');
-    staggerItems.forEach((item) => {
-      observer.observe(item);
-    });
-
-    return () => {
-      staggerItems.forEach((item) => {
-        observer.unobserve(item);
-      });
-    };
-  }, []);
-
-
 
   return (
     <section className="about animate-on-scroll" ref={sectionRef} id="about">

@@ -46,7 +46,6 @@ export const useParallax = () => {
         const rect = el.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Only apply parallax when element is in viewport
         if (rect.top < windowHeight && rect.bottom > 0) {
           const elementCenter = rect.top + rect.height / 2;
           const centerOffset = elementCenter - windowHeight / 2;

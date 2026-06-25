@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-// Configure email transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -13,32 +12,28 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Verify email transporter at startup
 if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
   transporter.verify((error, success) => {
     if (error) {
-      console.error('✗ SMTP connection error:', error.message);
-      console.error('👉 Troubleshooting: Make sure you use a Google App Password (not your regular Gmail password) and 2-Step Verification is enabled.');
+      console.error('SMTP connection error:', error.message);
+      console.error('Troubleshooting: Make sure you use a Google App Password (not your regular Gmail password) and 2-Step Verification is enabled.');
     } else {
-      console.log('✓ SMTP connection ready (emails will be sent successfully)');
+      console.log('SMTP connection ready (emails will be sent successfully)');
     }
   });
 } else {
-  console.log('⚠ SMTP transporter not configured: EMAIL_USER or EMAIL_PASSWORD missing in env');
+  console.log('SMTP transporter not configured: EMAIL_USER or EMAIL_PASSWORD missing in env');
 }
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio')
-  .then(() => console.log('✓ MongoDB Connected'))
-  .catch(err => console.log('✗ MongoDB Error:', err));
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log('MongoDB Error:', err));
 
-// Models
 const contactSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -48,7 +43,6 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-// Routes
 app.get('/api/portfolio', (req, res) => {
   res.json({
     name: 'Prathap B S',
@@ -69,7 +63,6 @@ app.post('/api/contact', async (req, res) => {
     const contact = new Contact(req.body);
     await contact.save();
 
-    // Send email notification if credentials are configured
     if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
       try {
         const mailOptions = {
@@ -84,17 +77,17 @@ Message: ${contact.message}
 `
         };
         await transporter.sendMail(mailOptions);
-        console.log('✓ Email notification sent to pbs@gitam.in');
+        console.log('Email notification sent to pbs@gitam.in');
       } catch (emailErr) {
-        console.error('✗ Email notification failed to send:', emailErr.message);
+        console.error('Email notification failed to send:', emailErr.message);
       }
     } else {
-      console.log('⚠ Email notification skipped (EMAIL_USER or EMAIL_PASSWORD not set in env)');
+      console.log('Email notification skipped (EMAIL_USER or EMAIL_PASSWORD not set in env)');
     }
 
     res.status(201).json({ message: 'Message sent successfully' });
   } catch (err) {
-    console.error('✗ Contact form server error:', err);
+    console.error('Contact form server error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -107,7 +100,7 @@ app.get('/api/projects', (req, res) => {
       description: 'Full-stack solution for small businesses to manage multiple UPI accounts and generate predefined-amount QR codes.',
       tags: ['Full Stack', 'QR Code', 'Vercel'],
       link: 'https://upi-pink.vercel.app/',
-      icon: '💸'
+      icon: 'payment'
     },
     {
       id: 2,
@@ -115,14 +108,14 @@ app.get('/api/projects', (req, res) => {
       description: 'Real-time emergency gesture recognition with 93% accuracy using MediaPipe and OpenCV.',
       tags: ['React', 'TypeScript', 'OpenCV', 'MediaPipe'],
       link: 'https://ai-powered-gesture-detection-62.lovable.app/',
-      icon: '🤚'
+      icon: 'gesture'
     },
     {
       id: 3,
       title: 'CIVIX — Citizen Interaction Platform',
       description: 'Civic-tech platform enabling citizens to raise requests with local government and authorities.',
       tags: ['Web App', 'Civic Tech', 'Government'],
-      icon: '🏛️'
+      icon: 'civix'
     },
     {
       id: 4,
@@ -130,7 +123,7 @@ app.get('/api/projects', (req, res) => {
       description: 'Browser-based memory game with dynamic pattern generation and real-time input validation.',
       tags: ['HTML', 'CSS', 'JavaScript'],
       link: 'https://github.com/Prathap-bs/symonsaysgame',
-      icon: '🕹️'
+      icon: 'game'
     },
     {
       id: 5,
@@ -138,12 +131,12 @@ app.get('/api/projects', (req, res) => {
       description: 'Fully functional travel platform with responsive design built on WordPress.',
       tags: ['WordPress', 'Responsive'],
       link: 'https://tourandtravel8819.wordpress.com/prathap/',
-      icon: '✈️'
+      icon: 'travel'
     }
   ]);
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`✓ Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

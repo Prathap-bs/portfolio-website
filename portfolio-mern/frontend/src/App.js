@@ -27,7 +27,6 @@ function App() {
     "Welcome to Prathap's Space."
   ];
 
-  // Animation hooks
   useParallax();
   useScrollTrigger();
 
@@ -36,13 +35,11 @@ function App() {
       ? 'http://localhost:5000/api'
       : 'https://portfolio-website-whqu.onrender.com/api';
 
-    // Fetch portfolio data
     fetch(`${API_URL}/portfolio`)
       .then((res) => res.json())
       .then((data) => setPortfolio(data))
       .catch((err) => console.log('Portfolio Error:', err));
 
-    // Fetch projects data
     fetch(`${API_URL}/projects`)
       .then((res) => res.json())
       .then((data) => setProjects(data))
@@ -67,7 +64,6 @@ function App() {
     }
   }, [portfolio]);
 
-  // Loading screen
   if (!portfolio) {
     return (
       <div className="loading">
@@ -101,7 +97,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Top Scrolling Marquee Bar */}
       <div className="marquee-bar">
         <div className="marquee-content">
           <span>Open for internships &amp; collaborations</span>
@@ -126,7 +121,6 @@ function App() {
       <Contact portfolio={portfolio} />
       <Footer portfolio={portfolio} />
 
-      {/* Floating Brutalist Toast Popup */}
       {showPopup && (
         <div className="brutalist-toast">
           <div className="toast-header">
@@ -134,7 +128,7 @@ function App() {
             <button className="toast-close" onClick={() => setShowPopup(false)} aria-label="Close message">×</button>
           </div>
           <div className="toast-body">
-            <p className="toast-message">👋 Looking for a full-stack engineer? Let's build something awesome!</p>
+            <p className="toast-message">Looking for a full-stack engineer? Let's build something awesome!</p>
             <div className="toast-actions">
               <a href="/Resume.pdf" download className="toast-btn toast-btn-primary">Download CV</a>
               <a href="#contact" onClick={() => setShowPopup(false)} className="toast-btn toast-btn-secondary">Say Hello</a>

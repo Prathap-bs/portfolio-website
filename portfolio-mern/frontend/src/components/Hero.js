@@ -14,7 +14,6 @@ const Hero = ({ portfolio }) => {
     if (element) {
       element.classList.add('fade-in');
       element.classList.add('animate-in-view');
-      // Add animate-in-view to all child elements with scroll animation classes
       const animatedChildren = element.querySelectorAll('[class*="animate-on-scroll"]');
       animatedChildren.forEach(child => {
         child.classList.add('animate-in-view');
@@ -35,7 +34,7 @@ const Hero = ({ portfolio }) => {
           <p className="hero-desc">{portfolio.bio}</p>
           <div className="hero-buttons">
             <a href="#projects" className="btn btn-primary">
-              View Projects →
+              View Projects
             </a>
             <a href={`mailto:${portfolio.email}`} className="btn btn-secondary">
               Get in touch
@@ -60,7 +59,7 @@ const Hero = ({ portfolio }) => {
 &nbsp;&nbsp;name<span className="operator">:</span> <span className="string">'{portfolio.name}'</span>,<br/>
 &nbsp;&nbsp;role<span className="operator">:</span> <span className="string">'Full Stack Developer'</span>,<br/>
 &nbsp;&nbsp;location<span className="operator">:</span> <span className="string">'{portfolio.location}'</span>,<br/>
-&nbsp;&nbsp;skills<span className="operator">:</span> <span className="bracket">[</span><br/>
+&nbsp;&nbsp;skills<span className="bracket">[</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span className="string">'React'</span>, <span className="string">'Node.js'</span>, <span className="string">'Express'</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span className="string">'MongoDB'</span>, <span className="string">'Python'</span>, <span className="string">'REST APIs'</span><br/>
 &nbsp;&nbsp;<span className="bracket">]</span>,<br/>

@@ -135,7 +135,7 @@ const Contact = ({ portfolio }) => {
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary" disabled={loading}>
-                {loading ? 'Sending...' : 'Send message →'}
+                {loading ? 'Sending...' : 'Send message'}
               </button>
               {status && <div className="form-status">{status}</div>}
             </form>
