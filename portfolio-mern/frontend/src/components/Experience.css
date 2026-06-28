@@ -77,6 +77,33 @@
   line-height: 1.7;
 }
 
+.exp-points {
+  margin-top: 14px;
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-point {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  position: relative;
+  padding-left: 20px;
+}
+
+.exp-point::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  font-size: 12px;
+}
+
 @media (max-width: 900px) {
   .experience-card {
     grid-template-columns: 1fr;

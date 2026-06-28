@@ -8,21 +8,31 @@ const Experience = () => {
   const experiences = [
     {
       date: '2026 — Present',
+      title: 'Embedded Real-Time Systems Intern',
+      company: 'Software Defined Vehicles / QNX RTOS',
+      description: 'Building a real-time localization system for an Autonomous Mobile Robot (AMR) using QNX RTOS on Raspberry Pi 5 and Gazebo simulation.',
+      points: [
+        'Mapped LiDAR, IMU, and odometry telemetry over UDP socket.',
+        'Developed native QNX localization & obstacle detection algorithms.',
+        'Optimized CPU load (<2%) and latency (~0.004 ms) using ThreadCtl CPU affinity and pulse-based IPC.'
+      ]
+    },
+    {
+      date: 'Feb 2026 — May 2026',
       title: 'ServiceNow Virtual Internship Program',
       company: 'ServiceNow / SmartBridge · AICTE',
-      description: 'Full-stack development internship focusing on enterprise solutions, cloud technologies, and real-world ServiceNow platform experience. Hands-on learning with industry mentorship and project-based assessments.'
+      description: 'Completed ServiceNow training in workflow design, admin fundamentals, and platform automation (Certificate ID: SNU2024730).',
+      points: [
+        'ServiceNow Administration & Micro Certification.',
+        'Certified System Administrator (CSA) Exam Prep.',
+        'Flow Designer, ATF, and Agentic AI integration.'
+      ]
     },
     {
       date: '2024',
       title: 'Software Engineering Intern',
       company: 'Infosys Springboard',
       description: 'Developed CIVIX, a citizen interaction platform for government departments. Structured mentorship, agile methodology, and real product delivery.'
-    },
-    {
-      date: '2024 — 2027',
-      title: 'B.Tech — Computer Science & Business Systems',
-      company: 'GITAM University · Bengaluru Campus',
-      description: 'Core coursework in Web Dev, DBMS, Software Design with UML, Innovation & Design Thinking, and AI. Active in security research and academic projects.'
     }
   ];
 
@@ -38,7 +48,14 @@ const Experience = () => {
               <div className="exp-content">
                 <h3 className="exp-title">{exp.title}</h3>
                 <p className="exp-company">{exp.company}</p>
-                <p className="exp-desc">{exp.description}</p>
+                {exp.description && <p className="exp-desc">{exp.description}</p>}
+                {exp.points && (
+                  <ul className="exp-points">
+                    {exp.points.map((point, pIdx) => (
+                      <li key={pIdx} className="exp-point">{point}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           ))}
